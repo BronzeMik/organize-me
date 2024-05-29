@@ -1,7 +1,7 @@
 import { UserButton } from '@clerk/nextjs'
 import { Menu, SquareMenu } from 'lucide-react'
 import React, { useContext } from 'react'
-import { SideBarContext } from '../layout';
+import { SideBarContext } from '../../../../contexts/SideBarContext';
 
 function Header() {
   const {showSideBar, setShowSideBar} = useContext(SideBarContext);

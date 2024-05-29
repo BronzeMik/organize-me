@@ -1,9 +1,10 @@
+// src/app/_components/SideBar.jsx
 "use client";
 import { useContext, useState, useEffect } from 'react';
 import { Menu, MenuItem, Sidebar } from 'react-pro-sidebar';
 import { HomeIcon, Users, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { SideBarContext } from '../layout';
+import { SideBarContext } from '../../../../contexts/SideBarContext'
 
 function SideBar() {
   const { showSideBar, setShowSideBar } = useContext(SideBarContext);

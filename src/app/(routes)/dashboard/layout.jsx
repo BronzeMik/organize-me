@@ -1,15 +1,13 @@
+// src/app/(routes)/dashboard/layout.jsx
 "use client";
-import React, { useEffect, useState, createContext } from 'react';
-import SideBar from './_components/SideBar';
-import Header from './_components/Header';
-
-export const SideBarContext = createContext();
+import React from 'react';
+import SideBar from '../../_components/SideBar';
+import Header from '../../_components/Header';
+import { SideBarProvider } from '../../../contexts/SideBarContext';
 
 function Layout({ children }) {
-  const [showSideBar, setShowSideBar] = useState(false);
-
   return (
-    <SideBarContext.Provider value={{ showSideBar, setShowSideBar }}>
+    <SideBarProvider>
       <div className='flex min-h-screen'>
         <div>
           <SideBar />
@@ -21,7 +19,7 @@ function Layout({ children }) {
           </div>
         </div>
       </div>
-    </SideBarContext.Provider>
+    </SideBarProvider>
   );
 }
 
