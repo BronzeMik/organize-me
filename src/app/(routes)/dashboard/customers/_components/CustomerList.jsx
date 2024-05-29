@@ -200,7 +200,7 @@ function CustomerList() {
       <div className='flex justify-center'>
         {/* Page numbers */}
         {numberOfPagesArr.map((page) => (
-            <button className={`mx-2 my-4 hover:text-blue-500 cursor-pointer ${currentPage == page ? "underline" : ''}`} value={page} onClick={(event) => setCurrentPage(event.target.value)}>{page}</button>
+            <button key={page} className={`mx-2 my-4 hover:text-blue-500 cursor-pointer ${currentPage == page ? "underline" : ''}`} value={page} onClick={(event) => setCurrentPage(event.target.value)}>{page}</button>
         ))}
       </div>
       
