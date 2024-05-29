@@ -1,22 +1,17 @@
-"use client"
-import React, { useEffect, useState } from 'react'
-import SideBar from './_components/SideBar'
-import Header from './_components/Header'
-import { createContext } from 'react'
+"use client";
+import React, { useEffect, useState, createContext } from 'react';
+import SideBar from './_components/SideBar';
+import Header from './_components/Header';
 
 export const SideBarContext = createContext();
 
+function Layout({ children }) {
+  const [showSideBar, setShowSideBar] = useState(false);
 
-
-function Layout({children}) {
-  const [showSideBar, setShowSideBar] = useState();
-  useEffect(() => {
-    setShowSideBar(false);
-  }, [])
   return (
-    <SideBarContext.Provider value={{showSideBar, setShowSideBar}}>
-    <div className='flex min-h-screen'>
-        <div className=''>
+    <SideBarContext.Provider value={{ showSideBar, setShowSideBar }}>
+      <div className='flex min-h-screen'>
+        <div>
           <SideBar />
         </div>
         <div className='flex flex-col w-full'>
@@ -24,12 +19,10 @@ function Layout({children}) {
           <div className='flex justify-end md:justify-center'>
             {children}
           </div>
-          
         </div>
-    </div>
+      </div>
     </SideBarContext.Provider>
-
-  )
+  );
 }
 
-export default Layout
+export default Layout;
