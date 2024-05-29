@@ -9,7 +9,7 @@ export const SideBarContext = createContext();
 
 
 function layout({children}) {
-  const [showSideBar, setShowSideBar] = useState(false);
+  const [showSideBar, setShowSideBar] = useState();
   return (
     <SideBarContext.Provider value={{showSideBar, setShowSideBar}}>
     <div className='flex min-h-screen'>
