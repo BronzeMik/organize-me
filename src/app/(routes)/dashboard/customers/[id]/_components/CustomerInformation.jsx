@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import React from 'react'
 
 function CustomerInformation() {
@@ -17,7 +18,7 @@ function CustomerInformation() {
         <div className='flex flex-col md:flex-row justify-start gap-3 items-center'>
             {/* Profile Img */}
             <div>
-                <img src='/user-img.png' alt="User image" className='max-w-24'/>
+                <Image src='/user-img.png' alt="User image" className='max-w-24' width={300} height={200}/>
             </div>
             <div className='text-center md:text-left'>
                 {/* Name */}

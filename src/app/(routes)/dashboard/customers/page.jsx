@@ -5,7 +5,7 @@ import { SideBarContext } from '../layout';
 
 
 
-function page() {
+function Page() {
   const {setShowSideBar} = useContext(SideBarContext);
   useEffect(() => {
     setShowSideBar(false)
@@ -22,4 +22,4 @@ function page() {
   )
 }
 
-export default page
+export default Page
