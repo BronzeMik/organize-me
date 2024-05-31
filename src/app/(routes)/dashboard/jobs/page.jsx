@@ -72,7 +72,7 @@ function Page() {
   ]
   return (
     <div>
-      <BasicTable rows={jobs} colNames=
+      Dashboard
     </div>
   )
 }
