@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Payment, columns } from "./customerdata/columns";
-import BasicTable from './customerdata/data-table';
+import BasicTable from '../../_components/data-table';
 import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { SearchSortContext } from '@/src/contexts/SearchSortProvider';
 import SearchSort from '../../_components/SearchSort';
@@ -66,15 +66,23 @@ function CustomerList() {
     }
   ];
 
+  const colNames = [
+    "NAME",
+    "PHONE",
+    "EMAIL",
+    "CATEGORY",
+    "NOTES"
+
+  ]
+
+
   // Filtered list for search
   const [filteredList, setFilteredList] = useState([...customers]);
 
   // Input query in search field
-  // const searchQuery = useRef(null);
   const {searchQuery} = useContext(SearchSortContext);
 
   // Filter preference
-  // const [searchBy, setSearchBy] = useState(null); 
   const {sortBy} = useContext(SortByContext);
 
   // Current page
@@ -118,7 +126,6 @@ function CustomerList() {
   // Search for customers
   const searchCustomers = () => {
     // Get current value in search input
-    // const query = searchQuery.current?.value.toLowerCase();
     let query = searchQuery;
     if(query.length > 0) {
       query = query.toLowerCase();
@@ -162,37 +169,7 @@ function CustomerList() {
     <div>
         
         <div className='w-full flex flex-col md:flex-row justify-between'>
-            {/* <div className='flex justify-between items-start w-full md:w-2/6'>
-
-                Search Customers input
-                <TextField
-                id="standard-search"
-                label={searchBy ? `Search by ${searchBy ? searchBy : '...'}` : 'Please select a sort option'}
-                type="search"
-                variant="standard"
-                className='my-6'
-                inputRef={searchQuery}
-                onChange={searchCustomers}
-                disabled={searchBy ? false : true}
-                />
-
-            Search by drop down
-            <FormControl variant="filled" sx={{ m: 1, minWidth: 120 }} className='my-4'>
-                <InputLabel id="demo-simple-select-filled-label">Search By</InputLabel>
-                <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={searchBy}
-                        label='Search by..'
-                        onChange={(event) => setSearchBy(event.target.value)}
-                    >
-                        <MenuItem value='name'>Name</MenuItem>
-                        <MenuItem value='phone'>Phone</MenuItem>
-                        <MenuItem value='email'>Email</MenuItem>
-                        <MenuItem value='category'>Category</MenuItem>
-                </Select>
-            </FormControl>
-            </div> */}
+            
             <SearchSort searchList={searchCustomers} optionsArray={['name', 'phone', 'email', 'category']} />
             <div>
 
@@ -205,7 +182,7 @@ function CustomerList() {
       <h2 className='text-xl m-4'>All Customers</h2>
         <hr />
       {/* Customers list */}
-      {searchQuery?.current?.value ? <BasicTable rows={shortCustomersList} /> : <BasicTable rows={shortCustomersList} />}
+      {searchQuery?.current?.value ? <BasicTable rows={shortCustomersList} colNames={colNames} path="/dashboard/customers"/> : <BasicTable rows={shortCustomersList} colNames={colNames}  path="/dashboard/customers"/>}
       <div className='flex justify-center'>
         {/* Page numbers */}
         {numberOfPagesArr.map((page) => (

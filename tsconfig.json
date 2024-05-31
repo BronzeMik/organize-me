@@ -31,7 +31,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "src/app/(routes)/dashboard/customers/_components/CustomerList.jsx", "src/app/(routes)/dashboard/customers/_components/customerdata/data-table.jsx"  ],
+, "src/app/(routes)/dashboard/customers/_components/CustomerList.jsx", "src/app/(routes)/dashboard/_components/data-table.jsx"  ],
   "exclude": [
     "node_modules"
   ]
