@@ -6,7 +6,7 @@ function JobOverview({ job }) {
     
     
   return (
-    <div className='bg-white border-solid border-slate-100 border-2 px-3 py-5 mt-8 md:w-[90%] flex flex-col text-sm'>
+    <div className='bg-white border-solid border-slate-200 border-2 px-3 py-5 mt-8 md:w-[90%] flex flex-col text-sm'>
         {/* Job details */}
         <div className='flex justify-between items-center mt-8 px-4 flex-wrap'>
             <h2 className=' text-base'><span className='font-bold uppercase'>Job Title:</span> {job.job_title}</h2>
@@ -43,7 +43,7 @@ function JobOverview({ job }) {
             </div>
            
             {/* Buttons description */}
-            <div className='flex justify-between flex-wrap'>
+            <div className='flex justify-between flex-wrap md:flex-nowrap'>
                 <a href=''><button className='btn'>View Details</button></a>
                 <a href=''><button className='btn red-btn'>Delete Job</button></a>
             </div>
