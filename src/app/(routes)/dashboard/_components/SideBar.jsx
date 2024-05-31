@@ -35,13 +35,13 @@ function SideBar() {
   };
 
   useEffect(() => {
-    console.log(showSideBar);
+
   }, [showSideBar]);
 
   return (
     <div>
       {showSideBar && (
-        <Sidebar className='z-50 min-h-screen' collapsed={collapsed}>
+        <Sidebar className='z-50 min-h-screen' collapsed={showSideBar}>
           <Menu className='p-5 fixed bg-blue-600 text-white h-screen'>
             <X onClick={handleCloseSidebar} className='cursor-pointer' />
             <div className='h-80'></div>

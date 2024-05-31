@@ -1,7 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Payment, columns } from "./customerdata/columns";
 import BasicTable from './customerdata/data-table';
 import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { SearchSortContext } from '@/src/contexts/SearchSortProvider';
+import SearchSort from '../../_components/SearchSort';
+import {SortByContext} from '../../../../../contexts/SortByProvider'
 
 function CustomerList() {
   const customers = [
@@ -64,13 +67,15 @@ function CustomerList() {
   ];
 
   // Filtered list for search
-  const [filteredList, setFilteredList] = useState(customers);
+  const [filteredList, setFilteredList] = useState([...customers]);
 
   // Input query in search field
-  const searchQuery = useRef(null);
+  // const searchQuery = useRef(null);
+  const {searchQuery} = useContext(SearchSortContext);
 
   // Filter preference
-  const [searchBy, setSearchBy] = useState(null);
+  // const [searchBy, setSearchBy] = useState(null); 
+  const {sortBy} = useContext(SortByContext);
 
   // Current page
   const [getCurrentPage, setCurrentPage] = useState(1);
@@ -112,25 +117,28 @@ function CustomerList() {
  
   // Search for customers
   const searchCustomers = () => {
-
     // Get current value in search input
-    const query = searchQuery.current?.value.toLowerCase();
-    let filterList;
+    // const query = searchQuery.current?.value.toLowerCase();
+    let query = searchQuery;
+    if(query.length > 0) {
+      query = query.toLowerCase();
+    }
+    let filterList = [];
 
     // Use searchBy value to search customer list
-    if(searchBy == 'name') {
+    if(sortBy == 'name') {
         filterList = customers.filter((cx) =>
             cx.name.toLowerCase().includes(query)
           );
-    } else if(searchBy == 'phone') {
+    } else if(sortBy == 'phone') {
         filterList = customers.filter((cx) =>
             cx.phone.includes(query)
           );
-    } else if(searchBy == 'email') {
+    } else if(sortBy == 'email') {
         filterList = customers.filter((cx) =>
             cx.email.includes(query)
           );
-    } else if(searchBy == 'category') {
+    } else if(sortBy == 'category') {
         filterList = customers.filter((cx) =>
             cx.category.toLowerCase().includes(query)
           );
@@ -146,7 +154,7 @@ function CustomerList() {
   // Update UI if current page is changed
   useEffect(() => {
     console.log(getCurrentPage)
-  }, [getCurrentPage, listToSplice])
+  }, [getCurrentPage, listToSplice, sortBy, searchQuery])
 
 
 
@@ -154,9 +162,9 @@ function CustomerList() {
     <div>
         
         <div className='w-full flex flex-col md:flex-row justify-between'>
-            <div className='flex justify-between items-start w-full md:w-2/6'>
+            {/* <div className='flex justify-between items-start w-full md:w-2/6'>
 
-                {/* Search Customers input */}
+                Search Customers input
                 <TextField
                 id="standard-search"
                 label={searchBy ? `Search by ${searchBy ? searchBy : '...'}` : 'Please select a sort option'}
@@ -168,7 +176,7 @@ function CustomerList() {
                 disabled={searchBy ? false : true}
                 />
 
-            {/* Search by drop down */}
+            Search by drop down
             <FormControl variant="filled" sx={{ m: 1, minWidth: 120 }} className='my-4'>
                 <InputLabel id="demo-simple-select-filled-label">Search By</InputLabel>
                 <Select
@@ -184,7 +192,8 @@ function CustomerList() {
                         <MenuItem value='category'>Category</MenuItem>
                 </Select>
             </FormControl>
-            </div>
+            </div> */}
+            <SearchSort searchList={searchCustomers} optionsArray={['name', 'phone', 'email', 'category']} />
             <div>
 
                 {/* Add customer btn */}

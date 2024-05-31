@@ -3,6 +3,10 @@ import RecentJobsTable from './RecentJobsTable';
 import { CirclePlus } from 'lucide-react';
 
 function RecentJobs() {
+    const customer = {
+        name: 'John Doe',
+        id: 1,
+    }
     const jobs = [
         {
             title: 'Fix Igniter',
@@ -36,7 +40,7 @@ function RecentJobs() {
   return (
     <div className='w-[90%]'>
         {/* Title */}
-        <div className='flex justify-between'>
+        <div className='flex justify-between '>
             <h1 className='text-2xl py-6'>Recent Jobs</h1>
 
             {/* Contact Pop-up */}
@@ -53,7 +57,7 @@ function RecentJobs() {
 
         {/* Edit information btn */}
         <div className='flex justify-center'>
-            <a href=""><button className='btn'>See All Jobs</button></a>
+            <a href={`/dashboard/jobs/${customer.id}`}><button className='btn'>See All Jobs</button></a>
         </div>
     </div>
   )
