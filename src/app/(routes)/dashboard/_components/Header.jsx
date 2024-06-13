@@ -23,7 +23,7 @@ function Header() {
         <div className='flex justify-between w-1/5 items-center'>
           <Settings className='hover:text-blue-700 cursor-pointer'/>
           <Bell className='hover:text-blue-700 cursor-pointer'/>
-          <Mail className='hover:text-blue-700 cursor-pointer'/>
+          <a href='/dashboard/inbox'><Mail className='hover:text-blue-700 cursor-pointer'/></a>
           <UserButton />
         </div>
         

@@ -12,7 +12,7 @@ function Layout({ children }) {
     <SideBarProvider>
       <SortByProvider>
       <SearchSortProvider>
-        <div className='flex bg-white'>
+        <div className='flex bg-white overflow-x-hidden'>
           <div>
             
             <Header />
