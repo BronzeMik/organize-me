@@ -12,13 +12,16 @@ function Layout({ children }) {
     <SideBarProvider>
       <SortByProvider>
       <SearchSortProvider>
-        <div className='flex min-h-screen bg-white'>
+        <div className='flex bg-white'>
           <div>
-            <SideBar />
-          </div>
-          <div className='flex flex-col w-full'>
+            
             <Header />
-            <div className='flex justify-end md:justify-center'>
+          </div>
+          <div className='flex w-[100vw]'>
+            <div className='w-[15%]'>
+              <SideBar />
+            </div>
+            <div className='flex justify-end md:justify-center pt-14 w-full'>
               {children}
             </div>
           </div>

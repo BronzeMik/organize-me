@@ -1,3 +1,4 @@
+import { Phone } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
 
@@ -23,7 +24,12 @@ function CustomerInformation() {
             <div className='text-center md:text-left'>
                 {/* Name */}
                 <h2>{customer.name}</h2>
-                <h2>{customer.phone}</h2>
+                <div className='flex'>
+                    <Phone />
+                    <a href={`tel:${customer.phone}`}><h2>{customer.phone}</h2></a>
+                </div>
+                
+                <a href={`mailto:${customer.email}`}><h2>{customer.email}</h2></a>
                 <h2>{customer.address}</h2>
             </div>
         </div>

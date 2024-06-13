@@ -41,10 +41,9 @@ function SideBar() {
   return (
     <div>
       {showSideBar && (
-        <Sidebar className='z-50 min-h-screen' collapsed={showSideBar}>
-          <Menu className='p-5 fixed bg-blue-600 text-white h-screen'>
-            <X onClick={handleCloseSidebar} className='cursor-pointer' />
-            <div className='h-80'></div>
+        <Sidebar className='z-0' collapsed={showSideBar}>
+          <Menu className='fixed pt-14 border-2 border-white border-r-slate-400 shadow-md shad border-opacity-25 text-slate-900 h-[95%] bottom-0'>
+            
             {menuItems.map((item) => (
               <MenuItem key={item.id} className='hover:text-blue-600'>
                 <a href={item.link} className='flex'>

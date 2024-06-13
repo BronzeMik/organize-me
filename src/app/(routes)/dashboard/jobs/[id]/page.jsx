@@ -119,7 +119,7 @@ function Page() {
       </div>
 
       {/* List Jobs */}
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center flex-wrap'>
+      <div className='grid grid-cols-1 md:grid-cols-2 items-center flex-wrap'>
         {filteredList.length > 0 ?  filteredList.map((job, index) => (
           <JobOverview key={job.job_id} job={job} />
         )) : jobs.map((job, index) => (

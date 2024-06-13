@@ -13,6 +13,12 @@ function Page() {
           <button className='btn'>See All Customers</button>
         </div> */}
 
+        {/* Add recent contacts */}
+
+        {/* Add leads section */}
+
+        {/* Add new customers */}
+
     </div>
   )
 }
