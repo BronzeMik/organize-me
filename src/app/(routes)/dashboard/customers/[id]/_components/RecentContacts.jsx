@@ -30,10 +30,10 @@ function RecentContacts() {
         },
     ]
   return (
-    <div className='w-[90%]'>
+    <div className='flex flex-col w-[90%]'>
         {/* Title */}
-        <div className='flex justify-between'>
-            <h1 className='text-2xl py-6'>Recent Contact</h1>
+        <div className='flex justify-between items-center py-3'>
+            <h1 className='text-2xl'>Recent Contact</h1>
 
             {/* Contact Pop-up */}
             <a href=""><button className='bg-green-800 border-solid border-2 px-5 py-3 mt-4 text-white hover:bg-white hover:text-green-800 hover:border-green-800 flex gap-2'>

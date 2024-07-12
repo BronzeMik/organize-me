@@ -23,14 +23,13 @@ export default function RecentJobsTable({rows}) {
   const route = useRouter();
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table" >
+      <Table aria-label="simple table" >
         <TableHead>
-          <TableRow className="bg-blue-800 text-white">
-          <TableCell className="text-white" style={{color: '#fff'}}>TITLE</TableCell>
-            <TableCell align="center" className="text-white" style={{color: '#fff'}}>DESCRIPTION</TableCell>
-            <TableCell align="center" className="text-white" style={{color: '#fff'}}>DATE</TableCell>
-            <TableCell align="center" className="text-white" style={{color: '#fff'}}>TOTAL</TableCell>
-            <TableCell align="center" className="text-white" style={{color: '#fff'}}>STATUS</TableCell>
+          <TableRow className="bg-slate-50 text-black">
+          <TableCell className="text-black" style={{color: '#000'}}>TITLE</TableCell>
+            <TableCell align="center" className="text-black" style={{color: '#000'}}>DESCRIPTION</TableCell>
+            <TableCell align="center" className="text-black" style={{color: '#000'}}>STATUS</TableCell>
+            <TableCell align="center" className="text-black" style={{color: '#000'}}>INVOICE STATUS</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -46,9 +45,8 @@ export default function RecentJobsTable({rows}) {
                 <a href={`/dashboard/customers/${row.id}`} className='hover:underline hover:text-blue-500'>{row.title}</a>
               </TableCell>
               <TableCell align="center">{row.description}</TableCell>
-              <TableCell align="center">{row.date}</TableCell>
-              <TableCell align="center">${row.total.toFixed(2)}</TableCell>
               <TableCell align="center">{row.status}</TableCell>
+              <TableCell align="center">{row.invoiceStatus}</TableCell>
             </TableRow>
           
           ))}

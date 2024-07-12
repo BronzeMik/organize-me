@@ -18,7 +18,7 @@ function SearchSort({searchList, optionsArray}) {
   }
   
   return (
-    <div className='flex justify-between items-start w-full md:w-2/6'>
+    <div className='flex gap-1 items-start w-full md:w-2/6'>
 
                 {/* Search Customers input */}
                 <TextField

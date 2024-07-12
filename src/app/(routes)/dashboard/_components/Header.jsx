@@ -1,29 +1,37 @@
+"use client"
+
 import { UserButton } from '@clerk/nextjs'
 import { Bell, Mail, Menu, Search, Settings, SquareMenu } from 'lucide-react'
 import React, { useContext } from 'react'
 import { SideBarContext } from '../../../../contexts/SideBarContext';
+import { useRouter } from 'next/navigation';
 
 function Header() {
   const {showSideBar, setShowSideBar} = useContext(SideBarContext);
+  const route = useRouter();
   const handleOpenSidebar = () => {
     setShowSideBar(true);
   };
 
+const goToInbox = () => {
+  route.replace('/dashboard/inbox')
+}
+
   return (
-    <div className={`flex w-full bg-slate-900 items-center text-white p-6 z-50 fixed border-solid border-slate-900 border-2 h-7  justify-between`}>
+    <div className={`flex w-[97%] bg-white shadow-md items-center text-slate-900 p-6 z-20 fixed border-solid border-slate-100 border-2 h-7  justify-between`}>
         {/* {showSideBar == false && <Menu onClick={handleOpenSidebar}  className='cursor-pointer'/>} */}
         <div className='px-3'>
-          <form className='border-solid border-2 border-slate-900 border-b-white'>
-            <input type='text' placeholder='Search projects' className='bg-slate-900 '/>
-            <button type='submit'>
+          {/* <form className='bg-opacity-0 border-solid border-2 border-opacity-0 border-b-slate-900 text-slate-900'>
+            <input type='text' placeholder='Search customers' className='bg-opacity-0 focus:outline-none'/>
+            <button type='submit' className='bg-opacity-0 text-slate-900 p-0 m-0'>
               <Search />
             </button>
-          </form>
+          </form> */}
         </div>
         <div className='flex justify-between w-1/5 items-center'>
           <Settings className='hover:text-blue-700 cursor-pointer'/>
           <Bell className='hover:text-blue-700 cursor-pointer'/>
-          <a href='/dashboard/inbox'><Mail className='hover:text-blue-700 cursor-pointer'/></a>
+          <div onClick={() => goToInbox()}><Mail className='hover:text-blue-700 cursor-pointer'/></div>
           <UserButton />
         </div>
         

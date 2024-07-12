@@ -7,6 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import {useRouter} from 'next/navigation'
+import { Checkbox } from '@mui/material';
 
 
 
@@ -18,9 +19,9 @@ export default function BasicTable({rows, colNames, path}) {
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table" >
         <TableHead>
-          <TableRow className="bg-blue-800 text-white">
+          <TableRow className="bg-slate-50 text-black">
             {colNames.map((col, index) => (
-              <TableCell key={index} align="center" className="text-white">{col}</TableCell>
+              <TableCell key={index} align="center" className="text-black">{col}</TableCell>
             ))}
           </TableRow>
         </TableHead>
@@ -31,10 +32,15 @@ export default function BasicTable({rows, colNames, path}) {
               key={row.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               onClick={() => route.replace(`${path}/${row.id}`)}
-              className='hover:bg-slate-200 cursor-pointer h-20'
+              className='hover:bg-slate-200 cursor-pointer py-2'
             >
+              <TableCell padding="checkbox">
+                      <Checkbox
+                        color="primary"
+                      />
+              </TableCell>
               {rowNames.map((keyName, index) => (
-                <TableCell key={index} align="center">{row[keyName]}</TableCell>
+                rowNames[index] !== 'id' && <TableCell key={index} align="center">{row[keyName]}</TableCell>
               ))}
             </TableRow>
           

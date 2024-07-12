@@ -1,114 +1,86 @@
 "use client"
 
-import React, { useEffect, useState } from 'react'
-import EmailModal from '../customers/[id]/_components/EmailModal';
-import { getEmails } from '@/src/lib/api';
-import styled from 'styled-components';
+import * as React from 'react';
+import SwipeableViews from 'react-swipeable-views';
+import { useTheme } from '@mui/material/styles';
+import AppBar from '@mui/material/AppBar';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Emails from './_components/Emails';
+import Messages from './_components/Messages'
 
-
-function Page() {
-const [emails, setEmails] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [selectedEmail, setSelectedEmail] = useState(null);
-
-  useEffect(() => {
-    const fetchEmails = async () => {
-      try {
-        const emailData = await getEmails();
-        setEmails(emailData.data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchEmails();
-  }, []);
-
-  useEffect(() => {
-    console.log('Emails state updated:', emails); // Debugging
-  }, [emails]);
-
-  const openModal = (email) => {
-    setSelectedEmail(email);
-  };
-
-  const closeModal = () => {
-    setSelectedEmail(null);
-  };
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
-
-  const ScrollContent = styled.div`
-  .inbox-container::-webkit-scrollbar {
-    width: 2px !important;
-    height: 2px !important;
-  }
-  
-  .inbox-container::-webkit-scrollbar-track {
-    background: #f1f1f1 !important;
-    border-radius: 10px !important;
-  }
-  
-  .inbox-container::-webkit-scrollbar-thumb {
-    background-color: #888 !important;
-    border-radius: 10px !important;
-    border: 3px solid #f1f1f1 !important;
-  }
-  
-  .inbox-container::-webkit-scrollbar-thumb:hover {
-    background-color: #555 !important;
-  }
-  
-  .inbox-container {
-    scrollbar-width: thin !important;
-    scrollbar-color: #888 #f1f1f1 !important;
-  }
-  `
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
 
   return (
-    <div className='bg-white flex flex-col mt-5 items-center w-[100%] inbox-container'>
-        <div className='flex flex-col justify-center w-[96%]'>
-            <div className='bg-blue-500 text-white px-4 py-4 rounded-t-2xl text-3xl'>INBOX</div>
-        </div>
-        <div className='grid grid-cols-3 md:h-[32rem] border-2 border-slate-300 w-[96%]'>
-
-            {/* Email list */}
-            <ScrollContent className='col-span-1 border-2 border-white border-r-slate-100 shadow-sm overflow-y-scroll'>
-                <div className='border-2 border-white border-b-slate-100 h-[10%]'>Filter</div>
-                {/* Display fetched emails */}
-                {emails.length > 0 ? (
-                <div className='mt-7'>
-                    <h2 className='p-2'>All Inboxes</h2>
-                    <ul>
-                    {emails.map((email) => (
-                        <li className='cursor-pointer border-2 border-t-slate-100 border-b-slate-100 py-3 text-md text-black hover:bg-slate-200 px-3' style={{fontSize: '14px', fontWeight: 'normal', fontColor: '#000'}} key={email.id} onClick={() => openModal(email)}>
-                        <h3><b>From: {email?.from[0]?.email}</b></h3>
-                        <h3><b>Subject:</b> {email.subject}</h3>
-                        </li>
-                    ))}
-                    </ul>
-                    
-                </div>
-                ) : (
-                <p>No emails found.</p>
-                )}
-            </ScrollContent>
-
-            {/* Email view */}
-            <div className='col-span-2 overflow-y-scroll'>
-                {/* Render the modal */}
-                <EmailModal email={selectedEmail} isOpen={selectedEmail !== null} onClose={closeModal} />
-            </div>
-        </div>
-        <style>
-
-        </style>
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`full-width-tabpanel-${index}`}
+      aria-labelledby={`full-width-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
     </div>
-  )
+  );
 }
 
-export default Page
+function a11yProps(index) {
+  return {
+    id: `full-width-tab-${index}`,
+    'aria-controls': `full-width-tabpanel-${index}`,
+  };
+}
+
+export default function Page() {
+  const theme = useTheme();
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  const handleChangeIndex = (index) => {
+    setValue(index);
+  };
+
+  return (
+
+    <Box sx={{ bgcolor: 'background.paper', width: '95%', height: 'fit-content'}}>
+      <AppBar position="static">
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          indicatorColor="secondary"
+          textColor="inherit"
+          variant="fullWidth"
+          aria-label="full width tabs example"
+        >
+          <Tab label="Emails" {...a11yProps(0)} />
+          <Tab label="Chat" {...a11yProps(1)} />
+          
+        </Tabs>
+      </AppBar>
+      <SwipeableViews
+        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+        index={value}
+        onChangeIndex={handleChangeIndex}
+      >
+        <TabPanel value={value} index={0} dir={theme.direction}>
+          <Emails />
+        </TabPanel>
+        <TabPanel value={value} index={1} dir={theme.direction}>
+          <Messages />
+        </TabPanel>
+        
+      </SwipeableViews>
+    </Box>
+
+  );
+}

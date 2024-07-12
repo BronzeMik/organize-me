@@ -7,16 +7,16 @@ function CustomerPayment() {
     }
 
   return (
-    <div className='w-full flex flex-col md:flex-row justify-start gap-8 my-8 px-4'>
+    <div className='w-full flex flex-col justify-start gap-8 my-8 px-4 border-2 border-slate-100 rounded-xl p-4 bg-gray-50 bg-opacity-20 shadow-md '>
         {/* Balance information */}
         <div className='flex justify-start gap-3'>
-            <h2 className='font-bold'>Balance: </h2>
+            <h2 className='font-bold'>Total Balance: </h2>
             <p>${customer.balance.toFixed(2)}</p>
         </div>
 
         {/* Total Paid */}
         <div className='flex justify-start gap-3'>
-            <h2 className='font-bold'>Total Paid: </h2>
+            <h2 className='font-bold'>Lifetime Value: </h2>
             <p>${customer.totalPaid.toFixed(2)}</p>
         </div>
     </div>

@@ -1,47 +1,59 @@
 import React from 'react';
-import RecentActivityTable from './RecentActivityTable';
+import RecentAttatchmentsTable from './RecentActivityTable';
 import { CirclePlus } from 'lucide-react';
 
 function RecentActivity() {
     const jobs = [
         {
-            action: 'INQUIRY',
-            detail: '01/01/2024',
-            status: 'Cx wants to know when they will receive invoice',
-            job_id: 1123,
+            name: 'Client Contract',
+            link: 'https://google.com',
+            date: '01/01/2024',
+            jobId: '2234'
         },
         {
-            action: 'INQUIRY',
-            detail: '01/01/2024',
-            status: 'Cx wants to know when they will receive invoice',
-            job_id: 1123,
+            name: 'Client Contract',
+            link: 'https://google.com',
+            date: '01/01/2024',
+            jobId: '2234'
         },
         {
-            action: 'INQUIRY',
-            detail: '01/01/2024',
-            status: 'Cx wants to know when they will receive invoice',
-            job_id: 1123,
-        }
+            name: 'Client Contract',
+            link: 'https://google.com',
+            date: '01/01/2024',
+            jobId: '2234'
+        },
+        {
+            name: 'Client Contract',
+            link: 'https://google.com',
+            date: '01/01/2024',
+            jobId: '2234'
+        },
+        {
+            name: 'Client Contract',
+            link: 'https://google.com',
+            date: '01/01/2024',
+            jobId: '2234'
+        },
     ]
   return (
     <div className='w-[90%]'>
         {/* Title */}
         <div className='flex justify-between'>
-            <h1 className='text-2xl py-6'>Recent Activity</h1>
+            <h1 className='text-2xl py-6'>Attachments</h1>
 
             {/* Contact Pop-up */}
             <a href=""><button className='bg-green-800 border-solid border-2 px-5 py-3 mt-4 text-white hover:bg-white hover:text-green-800 hover:border-green-800 flex gap-2'>
-                Add Activity<CirclePlus />
+                Add Document<CirclePlus />
                 </button></a>
 
         </div>
 
         {/* Recent Jobs Table */}
-        <RecentActivityTable rows={jobs} />
+        <RecentAttatchmentsTable data={jobs} />
 
         {/* Edit information btn */}
         <div className='flex justify-center'>
-            <a href=""><button className='btn'>View All Activity</button></a>
+            <a href=""><button className='btn'>View All Documents</button></a>
         </div>
     </div>
   )

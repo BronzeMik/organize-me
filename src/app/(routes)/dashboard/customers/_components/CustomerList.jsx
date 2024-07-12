@@ -9,64 +9,65 @@ import {SortByContext} from '../../../../../contexts/SortByProvider'
 function CustomerList() {
   const customers = [
     {
+      id: 1,
       name: 'John Doe',
       phone: '123-456-7890',
       email: 'info@email.com',
       category: 'RESIDENTIAL',
       notes: 'Schedule appointments during the morning only',
-      id: 1
     },
     {
+      id: 2,
       name: 'Mary Doe',
       phone: '123-456-7890',
       email: 'info@email.com',
       category: 'RESIDENTIAL',
       notes: 'Schedule appointments during the morning only',
-      id: 2
     },
     {
+      id: 3,
       name: 'John Doe',
       phone: '123-456-7890',
       email: 'info@email.com',
       category: 'COMMERCIAL',
       notes: 'Schedule appointments during the morning only',
-      id: 3
     },
     {
+      id: 4,
       name: 'John Doe',
       phone: '123-456-7890',
       email: 'callus@email.com',
       category: 'RESIDENTIAL',
       notes: 'Schedule appointments during the morning only',
-      id: 4
     },
     {
+      id: 5,
       name: 'John Doe',
       phone: '123-456-7890',
       email: 'info@email.com',
       category: 'RESIDENTIAL',
       notes: 'Schedule appointments during the morning only',
-      id: 5
     },
     {
+      id: 6,
       name: 'John Doe',
       phone: '123-456-7890',
       email: 'info@email.com',
       category: 'RESIDENTIAL',
       notes: 'Schedule appointments during the morning only',
-      id: 6
     },
     {
+      id: 7,
       name: 'John Doe',
       phone: '222-456-7890',
       email: 'info@email.com',
       category: 'RESIDENTIAL',
       notes: 'Schedule appointments during the morning only',
-      id: 7
     }
   ];
 
   const colNames = [
+    " ",
     "NAME",
     "PHONE",
     "EMAIL",
@@ -92,7 +93,7 @@ function CustomerList() {
   const [listToSplice, setListToSplice] = useState([...customers])
 
   // Customer items per page
-  const customersPerPage = 5;
+  const customersPerPage = 10;
 
   // Current page
   let currentPage = getCurrentPage;
@@ -168,21 +169,25 @@ function CustomerList() {
   return (
     <div>
         
-        <div className='w-full flex flex-col md:flex-row justify-between'>
+        <div className='w-full flex flex-col md:flex-row justify-between items-center'>
             
             <SearchSort searchList={searchCustomers} optionsArray={['name', 'phone', 'email', 'category']} />
-            <div>
+            <div className='flex items-center gap-2'>
 
                 {/* Add customer btn */}
                 <a href='/dashboard/customers/add-customer'><button className='btn'>Create Customer</button></a>
+                <a href='/dashboard/customers/add-customer'><button className='btn'>Import Customers</button></a>
             </div>
         </div>
         
       
-      <h2 className='text-xl m-4'>All Customers</h2>
+      
         <hr />
       {/* Customers list */}
-      {searchQuery?.current?.value ? <BasicTable rows={shortCustomersList} colNames={colNames} path="/dashboard/customers"/> : <BasicTable rows={shortCustomersList} colNames={colNames}  path="/dashboard/customers"/>}
+      <div className="my-12">
+        {searchQuery?.current?.value ? <BasicTable rows={shortCustomersList} colNames={colNames} path="/dashboard/customers"/> : <BasicTable rows={shortCustomersList} colNames={colNames}  path="/dashboard/customers"/>}
+      </div>
+      
       <div className='flex justify-center'>
         {/* Page numbers */}
         {numberOfPagesArr.map((page) => (

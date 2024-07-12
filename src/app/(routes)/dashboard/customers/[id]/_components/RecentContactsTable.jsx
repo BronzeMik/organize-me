@@ -22,13 +22,13 @@ export default function RecentContactsTable({rows}) {
   const route = useRouter();
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table" >
+      <Table aria-label="simple table" >
         <TableHead>
-          <TableRow className="bg-blue-800 text-white">
-          <TableCell className="text-white" style={{color: '#fff'}}>TYPE</TableCell>
-            <TableCell align="center" className="text-white" style={{color: '#fff'}}>DATE</TableCell>
-            <TableCell align="center" className="text-white" style={{color: '#fff'}}>COMMENTS</TableCell>
-            <TableCell align="center" className="text-white" style={{color: '#fff'}}>JOB ID</TableCell>
+          <TableRow className="bg-slate-50 text-black">
+          <TableCell className="text-black" style={{color: '#000'}}>TYPE</TableCell>
+            <TableCell align="center" className="text-black" style={{color: '#000'}}>DATE</TableCell>
+            <TableCell align="center" className="text-black" style={{color: '#000'}}>COMMENTS</TableCell>
+            <TableCell align="center" className="text-black" style={{color: '#000'}}>JOB ID</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

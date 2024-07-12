@@ -45,7 +45,7 @@ function JobOverview({ job }) {
             {/* Buttons description */}
             <div className='flex justify-between flex-wrap md:flex-nowrap'>
                 <a href=''><button className='btn'>View Details</button></a>
-                <a href=''><button className='btn red-btn'>Delete Job</button></a>
+                {job?.status == 'NOT STARTED' && <a href=''><button className='btn bg-red-800 text-white'>Cancel Job</button></a>}
             </div>
         </div>
     </div>

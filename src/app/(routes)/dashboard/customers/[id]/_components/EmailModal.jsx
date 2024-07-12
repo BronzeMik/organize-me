@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
+import DOMPurify from 'dompurify';
+
+
 
 function EmailModal({ email, isOpen, onClose }) {
+  const cleanBody = DOMPurify.sanitize(email?.body, {FORBID_TAGS: ['html', 'head', 'body' ,'style']});
+  
   return (
-    <div className={`modal ${isOpen ? 'open' : ''}`}>
+    <div className={`modal px-4 ${isOpen ? 'open' : ''}`}>
       <div className="modal-content flex flex-col items-center justify-center">
         <span className="close" onClick={onClose}></span>
         <h3>{email?.subject}</h3>
-        <div dangerouslySetInnerHTML={{ __html: email?.body }} />
+        <div dangerouslySetInnerHTML={{ __html: cleanBody }} />
         <style jsx>{`
         .modal-overlay {
           position: fixed;
@@ -22,8 +27,6 @@ function EmailModal({ email, isOpen, onClose }) {
         .modal-content {
           background: white;
           padding: 20px;
-          border-radius: 10px;          
-          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
           position: relative;
         }
         .close-button {

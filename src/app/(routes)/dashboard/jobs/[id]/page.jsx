@@ -36,7 +36,7 @@ function Page() {
       category: 'RESIDENTIAL',
       start_date: '01/01/2024',
       end_date: '02/01/2024',
-      status: 'IN PROGRESS',
+      status: 'CLOSED',
       last_update: '01/12/2024',
       description: 'Full kitchen renovation including appliances.',
       progress: 55,

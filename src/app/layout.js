@@ -14,6 +14,9 @@ export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
       <html lang="en">
+        <head>
+        <link href='https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.css' rel='stylesheet' />
+        </head>
         <body className={inter.className}>{children}</body>
       </html>
     </ClerkProvider>
